@@ -1,0 +1,4 @@
+"/Applications/CLion 2023.1 EAP.app/Contents/bin/cmake/mac/bin/cmake" -DCMAKE_BUILD_TYPE=Debug "-DCMAKE_MAKE_PROGRAM=/Applications/CLion 2023.1 EAP.app/Contents/bin/ninja/mac/ninja" -G Ninja -S /Users/valentinserban/OOP/Lab6-7 -B /Users/valentinserban/OOP/Lab6-7/cmake-build-debug
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /Users/valentinserban/OOP/Lab6-7/cmake-build-debug

@@ -1,0 +1,15 @@
+# ninja log v5
+8	727	1680372948800207977	CMakeFiles/Lab6_7.dir/UI/ui_filme.cpp.o	3c478b48cf4d04f5
+0	117	1680373749304145329	build.ninja	f4c06d12b533f246
+871	972	1680373315465443519	Lab6_7	3ee6731c7f190542
+9	887	1680249281735853588	CMakeFiles/Lab6_7.dir/Vector/VectorClass.cpp.o	a3d9548dfdf30d94
+10	278	1680249281130486515	CMakeFiles/Lab6_7.dir/Vector/Iterator.cpp.o	c263ec930576c33f
+18	756	1680180595458465181	CMakeFiles/Lab6_7.dir/Domain/Film.cpp.o	d29f14742fd5ec9c
+5	751	1680371741262278844	CMakeFiles/Lab6_7.dir/Repository/Filme.cpp.o	5fdf39d5659d5f06
+7	694	1680372948765833187	CMakeFiles/Lab6_7.dir/main.cpp.o	89739bfae381d8dd
+4	871	1680373315358306951	CMakeFiles/Lab6_7.dir/Tests/test_all_service.cpp.o	4a8e5a9ae8315e74
+8	653	1680372948723453670	CMakeFiles/Lab6_7.dir/Service/service_filme.cpp.o	91c17aa146b09b62
+5	677	1680370068682731124	CMakeFiles/Lab6_7.dir/Tests/Tests_Domain.cpp.o	a401d9084ead772b
+5	766	1680365146871467108	CMakeFiles/Lab6_7.dir/Validator/validators.cpp.o	c719322897267e2c
+5	751	1680371741261376646	CMakeFiles/Lab6_7.dir/Tests/Tests_Repository.cpp.o	540e10400f757002
+5	799	1680367035579238589	CMakeFiles/Lab6_7.dir/Utils/utils.cpp.o	8b700bcdb16d559
