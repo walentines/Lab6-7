@@ -22,6 +22,7 @@ private:
 public:
     friend class Iterator<T>;
     explicit Vector(int len);
+    Vector(Vector& v);
     [[nodiscard]] int size() const;
     [[nodiscard]] T get_element(int position) const;
     void push_back(T elem);

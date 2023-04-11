@@ -1,4 +1,4 @@
-#include "Vector/VectorClass.cpp"
+#include "Vector/VectorClass.h"
 #include "UI/ui_filme.h"
 #include "Tests/Tests_Domain.h"
 #include "Tests/Tests_Repository.h"
@@ -17,8 +17,6 @@ void start_program(){
 int main() {
 
     start_program();
-
-
 
     return 0;
 }

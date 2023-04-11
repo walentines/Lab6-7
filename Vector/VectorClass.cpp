@@ -12,6 +12,15 @@ int Vector<T>::size() const{
 }
 
 template <class T>
+Vector<T>::Vector(Vector &v){
+    for(int i = 0; i < v.size(); ++i){
+        vector[i] = v[i];
+    }
+    this->length = v.size();
+    this->max_length = v.max_length;
+}
+
+template <class T>
 Vector<T>::Vector(int len){
     try{
         if(len <= 0){

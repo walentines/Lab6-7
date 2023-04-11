@@ -39,7 +39,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "Lab6_7::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-Lab6_7-Debug-5f6acb34638e77a74856.json",
+					"jsonFile" : "target-Lab6_7-Debug-093825c52ea22152c669.json",
 					"name" : "Lab6_7",
 					"projectIndex" : 0
 				}
@@ -49,7 +49,7 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "/Users/valentinserban/OOP/Lab6-7/cmake-build-debug-coverage",
+		"build" : "/Users/valentinserban/OOP/Lab6-7/cmake-build-debug",
 		"source" : "/Users/valentinserban/OOP/Lab6-7"
 	},
 	"version" : 

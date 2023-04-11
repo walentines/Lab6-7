@@ -46,7 +46,7 @@ Film ui_filme::build_film(int id, std::string title, std::string type, std::stri
 void ui_filme::add_movie(){
     std::string title, type, year, actor;
     int errors = 0;
-    std::cin.get();
+//    std::cin.get();
     std::string id_string;
     std::cout << "Insert ID: ";
     std::getline(std::cin, id_string);
@@ -92,7 +92,7 @@ void ui_filme::add_movie(){
 void ui_filme::delete_movie() {
     std::string id_string;
     int errors = 0;
-    std::cin.get();
+//    std::cin.get();
     std::cout << "Enter the ID of the movie you want to delete: ";
     std::getline(std::cin, id_string);
     if(!validate_id(id_string)){
@@ -101,9 +101,12 @@ void ui_filme::delete_movie() {
     }
     if(!errors){
         int id = stoi(id_string);
-        int ok = this->uiFilme.delete_movie(id);
-        if(ok == -1){
+        Vector<Film> f = this->uiFilme.search_movie(id, "", "", "", "");
+        if(f[0].get_id() == 0){
             std::cout << "There's no such ID!\n";
+        }
+        else{
+            this->uiFilme.delete_movie(id);
         }
     }
 }
@@ -113,7 +116,7 @@ void ui_filme::modify_movie() {
     int errors = 0;
     std::string id_string;
     std::string title, year, actor, type;
-    std::cin.get();
+//    std::cin.get();
     std::cout << "Enter the ID of the movie you want to modify: ";
     std::getline(std::cin, id_string);
     std::cout << "Enter the title in which you want to change or nothing: ";
@@ -146,7 +149,7 @@ void ui_filme::search_movie(){
     int errors = 0;
     int id = 0;
     std::string title, year, actor, type;
-    std::cin.get();
+//    std::cin.get();
     std::cout << "Enter the title of the movie you want to find: ";
     std::getline(std::cin, title);
     std::cout << "Enter the type of the movie you want to find: ";
@@ -177,7 +180,7 @@ void ui_filme::search_movie(){
 void ui_filme::filter_movies(){
     std::string filter_type;
     std::cout << "Enter filter type (title/year): ";
-    std::cin.get();
+//    std::cin.get();
     std::getline(std::cin, filter_type);
     if(filter_type == "title"){
         std::string title;
@@ -336,7 +339,7 @@ void ui_filme::generate_movies_ui(){
 void ui_filme::sort_movies(){
     std::string sort_type, type;
     std::cout << "Enter the sorting type(title, actor, year, type): ";
-    std::cin.get();
+//    std::cin.get();
     std::getline(std::cin, sort_type);
     std::cout << "Enter the sorting type(asc, desc): ";
     std::getline(std::cin, type);
@@ -389,9 +392,17 @@ void ui_filme::sort_movies(){
 void ui_filme::run(){
     while(true){
         show_menu();
-        int command = 5, ok = 0;
+        int command, ok = 0;
+        std::string comanda;
         std::cout << "Enter the chosen command: ";
-        std::cin >> command;
+        std::getline(std::cin, comanda);
+        if(validate_id(comanda)){
+           command = stoi(comanda);
+        }
+        else{
+            std::cout << "Introdu un numar valid!\n";
+            continue;
+        }
         switch(command){
             case 1:
                 show_movies();

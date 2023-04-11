@@ -5,6 +5,7 @@
 #include "Filme.h"
 #include "../Vector/VectorClass.cpp"
 #include "../Utils/utils.h"
+#include <iostream>
 
 /// Constructor
 Filme::Filme() {
@@ -166,6 +167,16 @@ Vector<Film> Filme::search_movie(int id, const std::string& title, const std::st
                 searched_movies.push_back(this->filme[i]);
             }
         }
+    }
+
+    if(searched_movies.size() == 0){
+        Film f;
+        f.set_id(0);
+        f.set_actor("");
+        f.set_type("");
+        f.set_year("");
+        f.set_title("");
+        searched_movies.push_back(f);
     }
 
     return searched_movies;

@@ -4,10 +4,14 @@
 
 #include "Tests_Repository.h"
 #include <iostream>
+#include <vector>
+
+using std::vector;
 
 void test_add(){
     Filme mvs;
     Film mv;
+    vector<Film> filme_vector;
     int ok;
     mv.set_title("Terminator");
     mv.set_year("2000");
@@ -16,10 +20,12 @@ void test_add(){
     mv.set_id(1);
 
     ok = mvs.add_movie(mv);
+    filme_vector.push_back(mv);
     assert(ok == 1);
     assert(mvs.get_length() == 1);
     assert(mvs.get_movie_by_id(1) == mv);
     assert(mvs.get_movie_by_pos(0) == mv);
+    assert(filme_vector[0] == mv);
 
     Film mv1;
     mv1.set_title("Terminator");
