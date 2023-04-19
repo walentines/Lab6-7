@@ -4,6 +4,12 @@
 
 #include "utils.h"
 #include "../Vector/VectorClass.cpp"
+#include <vector>
+#include <random>
+#include <algorithm>
+#include <fstream>
+
+using std::vector;
 
 /// Functie pentru compararea a doua filme dupa titlu desc
 /// \param a Film
@@ -104,9 +110,9 @@ int compare_type_asc(const Film &a, const Film &b){
 /// Functie pentru filtarea filmelor dupa titlu
 /// \param movies Filme
 /// \param title string
-/// \return Vector<Film>
-Vector<Film> filter_movies_by_title(const Filme& movies, const std::string& title) {
-    Vector<Film> filtered_movies(1);
+/// \return vector<Film>
+vector<Film> filter_movies_by_title(const Filme& movies, const std::string& title) {
+    vector<Film> filtered_movies;
     for(int i = 0; i < movies.get_length(); ++i){
         Film mv = movies.get_movie_by_pos(i);
         if(mv.get_title() == title){
@@ -120,9 +126,9 @@ Vector<Film> filter_movies_by_title(const Filme& movies, const std::string& titl
 /// Functie pentru filtarea filmelor dupa an
 /// \param movies Filme
 /// \param title string
-/// \return Vector<Film>
-Vector<Film> filter_movies_by_year(const Filme& movies, const std::string& year){
-    Vector<Film> filtered_movies(1);
+/// \return vector<Film>
+vector<Film> filter_movies_by_year(const Filme& movies, const std::string& year){
+    vector<Film> filtered_movies;
     for(int i = 0; i < movies.get_length(); ++i){
         if(movies.get_movie_by_pos(i).get_year() >= year){
             filtered_movies.push_back(movies.get_movie_by_pos(i));
@@ -135,17 +141,18 @@ Vector<Film> filter_movies_by_year(const Filme& movies, const std::string& year)
 /// Functie pentru sortarea filmelor dupa titlu dupa tipul asc sau desc
 /// \param movies Filme
 /// \param type (string)
-/// \return Vector<Film>
-Vector<Film> sort_movies_title(const Filme& movies, const std::string& type){
-    Vector<Film> mvs(1);
-    for(int i = 0; i < movies.get_length(); ++i){
+/// \return vector<Film>
+vector<Film> sort_movies_title(const Filme& movies, const std::string& type){
+    vector<Film> mvs;
+    mvs.reserve(movies.get_length());
+for(int i = 0; i < movies.get_length(); ++i){
         mvs.push_back(movies.get_movie_by_pos(i));
     }
     if(type == "asc"){
-        mvs.sort(compare_title_asc);
+        sort(mvs.begin(), mvs.end(), compare_title_asc);
     }
     else if(type == "desc"){
-        mvs.sort(compare_title_desc);
+        sort(mvs.begin(), mvs.end(), compare_title_desc);
     }
 
     return mvs;
@@ -154,17 +161,18 @@ Vector<Film> sort_movies_title(const Filme& movies, const std::string& type){
 /// Functie pentru sortarea filmelor dupa actor dupa tipul asc sau desc
 /// \param movies Filme
 /// \param type (string)
-/// \return Vector<Film>
-Vector<Film> sort_movies_actor(const Filme& movies, const std::string& type){
-    Vector<Film> mvs(1);
-    for(int i = 0; i < movies.get_length(); ++i){
+/// \return vector<Film>
+vector<Film> sort_movies_actor(const Filme& movies, const std::string& type){
+    vector<Film> mvs;
+    mvs.reserve(movies.get_length());
+for(int i = 0; i < movies.get_length(); ++i){
         mvs.push_back(movies.get_movie_by_pos(i));
     }
     if(type == "asc"){
-        mvs.sort(compare_actor_asc);
+        sort(mvs.begin(), mvs.end(), compare_actor_asc);
     }
     else if(type == "desc"){
-        mvs.sort(compare_actor_desc);
+        sort(mvs.begin(), mvs.end(), compare_actor_desc);
     }
 
     return mvs;
@@ -173,17 +181,19 @@ Vector<Film> sort_movies_actor(const Filme& movies, const std::string& type){
 /// Functie pentru sortarea filmelor dupa an dupa tipul asc sau desc
 /// \param movies Filme
 /// \param type (string)
-/// \return Vector<Film>
-Vector<Film> sort_movies_year(const Filme& movies, const std::string& type){
-    Vector<Film> mvs(1);
-    for(int i = 0; i < movies.get_length(); ++i){
+/// \return vector<Film>
+vector<Film> sort_movies_year(const Filme& movies, const std::string& type){
+    vector<Film> mvs;
+    mvs.reserve(movies.get_length());
+for(int i = 0; i < movies.get_length(); ++i){
         mvs.push_back(movies.get_movie_by_pos(i));
     }
     if(type == "asc"){
-        mvs.sort(compare_year_asc);
+        sort(mvs.begin(), mvs.end(), compare_year_asc);
     }
     else if(type == "desc"){
-        mvs.sort(compare_year_desc);
+        sort(mvs.begin(), mvs.end(), compare_year_desc);
+
     }
 
     return mvs;
@@ -192,17 +202,18 @@ Vector<Film> sort_movies_year(const Filme& movies, const std::string& type){
 /// Functie pentru sortarea filmelor dupa tip dupa tipul asc sau desc
 /// \param movies Filme
 /// \param type (string)
-/// \return Vector<Film>
-Vector<Film> sort_movies_type(const Filme& movies, const std::string& type){
-    Vector<Film> mvs(1);
-    for(int i = 0; i < movies.get_length(); ++i){
+/// \return vector<Film>
+vector<Film> sort_movies_type(const Filme& movies, const std::string& type){
+    vector<Film> mvs;
+    mvs.reserve(movies.get_length());
+for(int i = 0; i < movies.get_length(); ++i){
         mvs.push_back(movies.get_movie_by_pos(i));
     }
     if(type == "asc"){
-        mvs.sort(compare_type_asc);
+        sort(mvs.begin(), mvs.end(), compare_type_asc);
     }
     else if(type == "desc"){
-        mvs.sort(compare_type_desc);
+        sort(mvs.begin(), mvs.end(), compare_type_desc);
     }
 
     return mvs;
@@ -397,4 +408,31 @@ void generate_movies(Filme &movies){
     f.set_actor("LeBron James");
     f.set_title("Scary Movie");
     movies.add_movie(f);
+}
+
+void get_random_elements(Filme& movies, int number_of_elem){
+    std::mt19937 mt{ std::random_device{}() };
+    while(number_of_elem--){
+        std::uniform_int_distribution<> dist(0, movies.get_length()-1);
+        int rndNr = dist(mt);
+        movies.add_movie_bag(movies.get_movie_by_pos(rndNr).get_title());
+    }
+}
+
+void write_to_csv(const Film& mv, std::fstream& fout){
+    fout << mv.get_id() << ", ";
+    fout << mv.get_title() << ", ";
+    fout << mv.get_type() << ", ";
+    fout << mv.get_year() << ", ";
+    fout << mv.get_actor();
+    fout << "\n";
+}
+
+void export_movies(Filme &movies, const std::string& file){
+    std::fstream fout;
+    fout.open(file, std::ios::out);
+    for(int i = 0; i < movies.get_bag_length(); ++i){
+        Film mov = movies.get_movie_by_pos(i);
+        write_to_csv(mov, fout);
+    }
 }

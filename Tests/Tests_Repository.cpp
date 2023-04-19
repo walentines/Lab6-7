@@ -5,6 +5,7 @@
 #include "Tests_Repository.h"
 #include <iostream>
 #include <vector>
+#include "../Utils/utils.h"
 
 using std::vector;
 
@@ -26,7 +27,6 @@ void test_add(){
     assert(mvs.get_movie_by_id(1) == mv);
     assert(mvs.get_movie_by_pos(0) == mv);
     assert(filme_vector[0] == mv);
-
     Film mv1;
     mv1.set_title("Terminator");
     mv1.set_year("2000");
@@ -52,7 +52,6 @@ void test_delete(){
     ok_delete = mvs.delete_movie(1);
     assert(ok_delete != -1);
     assert(mvs.get_length() == 0);
-
     mvs.add_movie(mv);
     assert(mvs.get_length() == 1);
     ok_delete = mvs.delete_movie(2);
@@ -77,7 +76,6 @@ void test_modify_movie(){
     assert(mvs.get_movie_by_id(1).get_actor() == "Silvester");
     assert(mvs.get_movie_by_id(1).get_year() == "2001");
     assert(mvs.get_movie_by_id(1).get_title() == "Terminator 2");
-
     ok = mvs.modify_movie(2, "Terminator 2", "Adventure", "2001", "Silvester");
     assert(ok == -1);
 }
@@ -99,6 +97,8 @@ void test_show_movies(){
     mvs.show_movies_table();
     Filme mvs2;
     mvs2.show_movies_table();
+    mvs.add_movie_bag("Terminator");
+    mvs.show_bag_table();
     std::cout.clear();
 }
 
@@ -112,20 +112,33 @@ void test_search_movies(){
     mv.set_id(1);
 
     mvs.add_movie(mv);
-    Vector<Film> searched_mvs = mvs.search_movie(1, "", "", "", "");
+    vector<Film> searched_mvs = mvs.search_movie(1, "", "", "", "");
     assert(searched_mvs.size() == 1);
-
-    Vector<Film> searched_mvs1 = mvs.search_movie(0, "Terminator", "", "", "");
+    vector<Film> searched_mvs1 = mvs.search_movie(0, "Terminator", "", "", "");
     assert(searched_mvs1.size() == 1);
-
-    Vector<Film> searched_mvs2 = mvs.search_movie(0, "", "Action", "", "");
+    vector<Film> searched_mvs2 = mvs.search_movie(0, "", "Action", "", "");
     assert(searched_mvs2.size() == 1);
-
-    Vector<Film> searched_mvs3 = mvs.search_movie(0, "", "", "2000", "");
+    vector<Film> searched_mvs3 = mvs.search_movie(0, "", "", "2000", "");
     assert(searched_mvs3.size() == 1);
-
-    Vector<Film> searched_mvs4 = mvs.search_movie(0, "", "", "", "Silvester Stalone");
+    vector<Film> searched_mvs4 = mvs.search_movie(0, "", "", "", "Silvester Stalone");
     assert(searched_mvs4.size() == 1);
+    vector<Film> searched_mvs5 = mvs.search_movie(0, "", "", "", "");
+    assert(searched_mvs4.size() == 1);
+}
+
+void test_add_bag(){
+    Filme mvs;
+    generate_movies(mvs);
+    mvs.add_movie_bag("Uncharted");
+    assert(mvs.get_bag_length() == 1);
+}
+
+void test_clear_bag(){
+    Filme mvs;
+    generate_movies(mvs);
+    mvs.add_movie_bag("Uncharted");
+    mvs.empty_bag();
+    assert(mvs.get_bag_length() == 0);
 }
 
 void test_all_repo(){
@@ -134,4 +147,6 @@ void test_all_repo(){
     test_modify_movie();
     test_show_movies();
     test_search_movies();
+    test_add_bag();
+    test_clear_bag();
 }

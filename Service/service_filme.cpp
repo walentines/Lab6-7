@@ -61,22 +61,22 @@ void FilmeS::show_movies() {
 /// \param new_type (string)
 /// \param new_year (string
 /// \param new_actor (string)
-/// \return Vector<Film>
-Vector<Film> FilmeS::search_movie(int id, const std::string& new_title, const std::string& new_type, const std::string& new_year, const std::string& new_actor){
+/// \return vector<Film>
+vector<Film> FilmeS::search_movie(int id, const std::string& new_title, const std::string& new_type, const std::string& new_year, const std::string& new_actor){
     return this->serviceFilme.search_movie(id, new_title, new_type, new_year, new_actor);
 }
 
 /// Functie pentru filtrarea filmelor dupa titlu.
 /// \param title (string)
-/// \return Vector<Film>
-Vector<Film> FilmeS::filter_movies_by_title_service(const std::string& title){
+/// \return vector<Film>
+vector<Film> FilmeS::filter_movies_by_title_service(const std::string& title){
     return filter_movies_by_title(this->serviceFilme, title);
 }
 
 /// Functie pentru filtrarea filmelor dupa an.
 /// \param year (string)
-/// \return Vector<Film>
-Vector<Film> FilmeS::filter_movies_by_year_service(const std::string& year){
+/// \return vector<Film>
+vector<Film> FilmeS::filter_movies_by_year_service(const std::string& year){
     return filter_movies_by_year(this->serviceFilme, year);
 }
 
@@ -87,33 +87,57 @@ void FilmeS::generate_movies_service(){
 
 /// Functie pentru sortarea filmelor dupa titlu si tipul type
 /// \param type (string)
-/// \return Vector<Film>
-Vector<Film> FilmeS::sort_movies_by_title(const std::string &type){
+/// \return vector<Film>
+vector<Film> FilmeS::sort_movies_by_title(const std::string &type){
     return sort_movies_title(this->serviceFilme, type);
 }
 
 /// Functie pentru sortarea filmelor dupa actor si tipul type
 /// \param type (string)
-/// \return Vector<Film>
-Vector<Film> FilmeS::sort_movies_by_actor(const std::string &type){
+/// \return vector<Film>
+vector<Film> FilmeS::sort_movies_by_actor(const std::string &type){
     return sort_movies_actor(this->serviceFilme, type);
 }
 
 /// Functie pentru sortarea filmelor dupa an si tipul type
 /// \param type (string)
-/// \return Vector<Film>
-Vector<Film> FilmeS::sort_movies_by_year(const std::string &type){
+/// \return vector<Film>
+vector<Film> FilmeS::sort_movies_by_year(const std::string &type){
     return sort_movies_year(this->serviceFilme, type);
 }
 
 /// Functie pentru sortarea filmelor dupa tip si tipul type
 /// \param type (string)
-/// \return Vector<Film>
-Vector<Film> FilmeS::sort_movies_by_type(const std::string &type){
+/// \return vector<Film>
+vector<Film> FilmeS::sort_movies_by_type(const std::string &type){
     return sort_movies_type(this->serviceFilme, type);
 }
 
 /// Functie pentru afisarea listei de filme sub forma de tabel
 void FilmeS::show_movies_table(){
     this->serviceFilme.show_movies_table();
+}
+
+void FilmeS::empty_bag_service(){
+    this->serviceFilme.empty_bag();
+}
+
+void FilmeS::add_movie_bag_service(const std::string &title){
+    this->serviceFilme.add_movie_bag(title);
+}
+
+void FilmeS::show_bag_table_service() {
+    this->serviceFilme.show_bag_table();
+}
+
+void FilmeS::fill_the_bag(int number_of_movies){
+    get_random_elements(this->serviceFilme, number_of_movies);
+}
+
+void FilmeS::export_mvs(const std::string &file){
+    export_movies(this->serviceFilme, file);
+}
+
+int FilmeS::get_bag_size(){
+    return this->serviceFilme.get_bag_length();
 }

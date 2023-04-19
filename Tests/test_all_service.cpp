@@ -73,6 +73,8 @@ void test_show_movies_service(){
     mv.set_id(1);
 
     mvs.add_movie(mv);
+    mvs.add_movie_bag_service("Terminator");
+    mvs.show_bag_table_service();
     mvs.show_movies();
     mvs.show_movies_table();
     std::cout.clear();
@@ -88,19 +90,19 @@ void test_search_movies_service(){
     mv.set_id(1);
 
     mvs.add_movie(mv);
-    Vector<Film> searched_mvs = mvs.search_movie(1, "", "", "", "");
+    vector<Film> searched_mvs = mvs.search_movie(1, "", "", "", "");
     assert(searched_mvs.size() == 1);
 
-    Vector<Film> searched_mvs1 = mvs.search_movie(0, "Terminator", "", "", "");
+    vector<Film> searched_mvs1 = mvs.search_movie(0, "Terminator", "", "", "");
     assert(searched_mvs1.size() == 1);
 
-    Vector<Film> searched_mvs2 = mvs.search_movie(0, "", "Action", "", "");
+    vector<Film> searched_mvs2 = mvs.search_movie(0, "", "Action", "", "");
     assert(searched_mvs2.size() == 1);
 
-    Vector<Film> searched_mvs3 = mvs.search_movie(0, "", "", "2000", "");
+    vector<Film> searched_mvs3 = mvs.search_movie(0, "", "", "2000", "");
     assert(searched_mvs3.size() == 1);
 
-    Vector<Film> searched_mvs4 = mvs.search_movie(0, "", "", "", "Silvester Stalone");
+    vector<Film> searched_mvs4 = mvs.search_movie(0, "", "", "", "Silvester Stalone");
     assert(searched_mvs4.size() == 1);
 }
 
@@ -123,7 +125,7 @@ void test_filter_movies_by_title(){
     mv1.set_id(2);
     mvs.add_movie(mv1);
 
-    Vector<Film> filtered_movies = mvs.filter_movies_by_title_service("Terminator");
+    vector<Film> filtered_movies = mvs.filter_movies_by_title_service("Terminator");
     assert(filtered_movies.size() == 1);
     assert(filtered_movies[0] == mv);
 }
@@ -147,7 +149,7 @@ void test_filter_movies_by_year(){
     mv1.set_id(2);
     mvs.add_movie(mv1);
 
-    Vector<Film> filtered_movies = mvs.filter_movies_by_year_service("1999");
+    vector<Film> filtered_movies = mvs.filter_movies_by_year_service("1999");
     assert(filtered_movies.size() == 2);
 }
 
@@ -176,11 +178,11 @@ void test_sort_movies_title(){
     mv1.set_id(2);
     mvs.add_movie(mv1);
 
-    Vector<Film> sorted_movies_asc = mvs.sort_movies_by_title("asc");
+    vector<Film> sorted_movies_asc = mvs.sort_movies_by_title("asc");
     assert(sorted_movies_asc[0] == mv1);
     assert(sorted_movies_asc[1] == mv);
 
-    Vector<Film> sorted_movies_desc = mvs.sort_movies_by_title("desc");
+    vector<Film> sorted_movies_desc = mvs.sort_movies_by_title("desc");
     assert(sorted_movies_desc[0] == mv);
     assert(sorted_movies_desc[1] == mv1);
 }
@@ -204,11 +206,11 @@ void test_sort_movies_actor(){
     mv1.set_id(2);
     mvs.add_movie(mv1);
 
-    Vector<Film> sorted_movies_asc = mvs.sort_movies_by_actor("asc");
+    vector<Film> sorted_movies_asc = mvs.sort_movies_by_actor("asc");
     assert(sorted_movies_asc[0] == mv);
     assert(sorted_movies_asc[1] == mv1);
 
-    Vector<Film> sorted_movies_desc = mvs.sort_movies_by_actor("desc");
+    vector<Film> sorted_movies_desc = mvs.sort_movies_by_actor("desc");
     assert(sorted_movies_desc[0] == mv1);
     assert(sorted_movies_desc[1] == mv);
 }
@@ -232,11 +234,11 @@ void test_sort_movies_year(){
     mv1.set_id(2);
     mvs.add_movie(mv1);
 
-    Vector<Film> sorted_movies_asc = mvs.sort_movies_by_year("asc");
+    vector<Film> sorted_movies_asc = mvs.sort_movies_by_year("asc");
     assert(sorted_movies_asc[0] == mv1);
     assert(sorted_movies_asc[1] == mv);
 
-    Vector<Film> sorted_movies_desc = mvs.sort_movies_by_year("desc");
+    vector<Film> sorted_movies_desc = mvs.sort_movies_by_year("desc");
     assert(sorted_movies_desc[0] == mv);
     assert(sorted_movies_desc[1] == mv1);
 }
@@ -260,13 +262,43 @@ void test_sort_movies_type(){
     mv1.set_id(2);
     mvs.add_movie(mv1);
 
-    Vector<Film> sorted_movies_asc = mvs.sort_movies_by_type("asc");
+    vector<Film> sorted_movies_asc = mvs.sort_movies_by_type("asc");
     assert(sorted_movies_asc[0] == mv1);
     assert(sorted_movies_asc[1] == mv);
 
-    Vector<Film> sorted_movies_desc = mvs.sort_movies_by_type("desc");
+    vector<Film> sorted_movies_desc = mvs.sort_movies_by_type("desc");
     assert(sorted_movies_desc[0] == mv);
     assert(sorted_movies_desc[1] == mv1);
+}
+
+void test_empty_bag(){
+    FilmeS mvs;
+    mvs.generate_movies_service();
+    mvs.add_movie_bag_service("Uncharted");
+    mvs.empty_bag_service();
+    assert(mvs.get_bag_size() == 0);
+}
+
+void test_add_movie_bag(){
+    FilmeS mvs;
+    mvs.generate_movies_service();
+    mvs.add_movie_bag_service("Uncharted");
+    assert(mvs.get_bag_size() == 1);
+}
+
+void test_fill_the_bag(){
+    FilmeS mvs;
+    mvs.generate_movies_service();
+    mvs.fill_the_bag(3);
+    assert(mvs.get_bag_size() == 3);
+}
+
+void test_export_mvs(){
+    FilmeS mvs;
+    mvs.generate_movies_service();
+    mvs.fill_the_bag(3);
+    mvs.export_mvs("test_export.csv");
+    assert(mvs.get_bag_size() == 3);
 }
 
 void test_all_service(){
@@ -282,4 +314,8 @@ void test_all_service(){
     test_sort_movies_actor();
     test_sort_movies_year();
     test_sort_movies_type();
+    test_empty_bag();
+    test_add_movie_bag();
+    test_fill_the_bag();
+    test_export_mvs();
 }

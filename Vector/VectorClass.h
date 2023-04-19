@@ -9,7 +9,6 @@
 
 template <class T>
 class Iterator;
-
 template <class T>
 class Vector{
 private:

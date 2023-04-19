@@ -36,7 +36,17 @@ public:
 
     void sort_movies();
 
-    static void show_movies_table(const Vector<Film> &movies);
+    static void show_movies_table(const vector<Film> &movies);
+
+    void empty_bag_ui();
+
+    void add_movie_bag_ui();
+
+    void show_bag_table_ui();
+
+    void generate_bag_of_movies();
+
+    void export_movies();
 };
 
 

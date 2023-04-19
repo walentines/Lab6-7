@@ -6,6 +6,10 @@
 #include "../Vector/VectorClass.cpp"
 #include "../Utils/utils.h"
 #include <iostream>
+#include <vector>
+#include <algorithm>
+
+using std::vector;
 
 /// Constructor
 Filme::Filme() {
@@ -40,13 +44,18 @@ int Filme::add_movie(const Film& elem){
 /// \param id (int)
 /// \return 1/0 daca s-a efectuat cu succes
 int Filme::delete_movie(int id){
-    Film elem = get_movie_by_id(id);
-    int pos = this->filme.remove(elem);
-    if(pos == -1){
-        return pos;
+//    Film elem = get_movie_by_id(id);
+    auto it = std::remove_if(this->filme.begin(), this->filme.end(), [id](const Film& f)->bool {
+        if (f.get_id() == id) {
+            return true;
+        }
+        return false;
+    });
+    if(it == this->filme.end()){
+        return -1;
     }
     this->length--;
-    return pos;
+    return 1;
 }
 
 /// Returneaza un film dupa id-ul acestuia
@@ -76,24 +85,25 @@ Film Filme::get_movie_by_id(int id) const{
 /// \param new_year (string)
 /// \param new_actor (string)
 /// \return 1/0 daca s a efectuat cu succes
-int Filme::modify_movie(int id, const std::string& new_title, const std::string& new_type, const std::string& new_year, const std::string& new_actor) const{
-    for(int i = 0; i < this->length; ++i){
-        if(filme[i].get_id() == id){
+int Filme::modify_movie(int id, const std::string& new_title, const std::string& new_type, const std::string& new_year, const std::string& new_actor){
+    auto it = std::find_if(this->filme.begin(), this->filme.end(), [new_title, new_type, new_actor, new_year, id](Film& f)->bool {
+        if (f.get_id() == id) {
             if(!new_title.empty()){
-                filme[i].set_title(new_title);
+                f.set_title(new_title);
             }
             if(!new_type.empty()){
-                filme[i].set_type(new_type);
+                f.set_type(new_type);
             }
             if(!new_year.empty()){
-                filme[i].set_year(new_year);
+                f.set_year(new_year);
             }
             if(!new_actor.empty()){
-                filme[i].set_actor(new_actor);
+                f.set_actor(new_actor);
             }
-
+            return true;
         }
-    }
+        return false;
+    });
     if(this->get_movie_by_id(id).get_id() == 0){
         return -1;
     }
@@ -115,9 +125,9 @@ void Filme::show_movies(){
 /// \param year (string)
 /// \param actor (string)
 /// \return Vector<Film>
-Vector<Film> Filme::search_movie(int id, const std::string& title, const std::string& type, const std::string& year, const std::string& actor){
+vector<Film> Filme::search_movie(int id, const std::string& title, const std::string& type, const std::string& year, const std::string& actor){
     std::string search_type;
-    Vector<Film> searched_movies(1);
+    vector<Film> searched_movies;
     if(id != 0){
         search_type = "id";
     }
@@ -169,7 +179,7 @@ Vector<Film> Filme::search_movie(int id, const std::string& title, const std::st
         }
     }
 
-    if(searched_movies.size() == 0){
+    if(searched_movies.empty()){
         Film f;
         f.set_id(0);
         f.set_actor("");
@@ -291,4 +301,123 @@ void Filme::show_movies_table()
 /// \return Film
 Film Filme::get_movie_by_pos(int position) const{
     return filme[position];
+}
+
+void Filme::empty_bag(){
+    this->bag.clear();
+}
+
+int Filme::get_bag_length(){
+    return (int)this->bag.size();
+}
+
+void Filme::add_movie_bag(const std::string &title){
+    for(const auto& it: this->filme){
+        if(it.get_title() == title){
+            this->bag.push_back(it);
+        }
+    }
+}
+
+void Filme::show_bag_table()
+/**
+ * functia de printare oferte disponibile (salvate deja)
+ * afiseaza un mesaj specific daca nu exista nicio oferta
+ * @param ptr_consola pointer spre structul de tip consola cu care se lucreaza
+ */
+{
+    if (this->bag.empty()){
+        std::cout<<("There is no movie!\n");
+        return;
+    }
+    int numar_filme = (int)this->bag.size();
+    std::cout<<"+";
+    for(int j=0; j<8; j++)
+        std::cout<<("-");
+    std::cout<<"+";
+    for(int j=0; j<22; j++)
+        std::cout<<"-";
+    std::cout<<"+";
+    for(int j=0; j<22; j++)
+        std::cout<<"-";
+    std::cout<<"+";
+    for(int j=0; j<8; j++)
+        std::cout<<"-";
+    std::cout<<"+";
+    for(int j=0; j<20; j++)
+        std::cout<<"-";
+    std::cout<<"+";
+    std::cout<<"\n";
+    std::cout<<"|";
+    for(int j=0; j<3; j++)
+        std::cout<<" ";
+    std::cout<<"ID";
+    for(int j=0; j<3; j++)
+        std::cout<<" ";
+    std::cout<<"|";
+    for(int j=0; j<8; j++)
+        std::cout<<" ";
+    std::cout<<"TITLU";
+    for(int j=0; j<9; j++)
+        std::cout<<" ";
+    std::cout<<"|";
+    for(int j=0; j<9; j++)
+        std::cout<<" ";
+    std::cout<<"TIP";
+    for(int j=0; j<10; j++)
+        std::cout<<" ";
+    std::cout<<"|";
+    for(int j=0; j<3; j++)
+        std::cout<<" ";
+    std::cout<<"AN";
+    for(int j=0; j<3; j++)
+        std::cout<<" ";
+    std::cout<<"|";
+    for(int j=0; j<7; j++)
+        std::cout<<" ";
+    std::cout<<"ACTOR";
+    for(int j=0; j<8; j++)
+        std::cout<<" ";
+    std::cout<<"|";
+    std::cout<<"\n";
+    std::cout<<"+";
+    for(int j=0; j<8; j++)
+        std::cout<<"-";
+    std::cout<<"+";
+    for(int j=0; j<22; j++)
+        std::cout<<"-";
+    std::cout<<"+";
+    for(int j=0; j<22; j++)
+        std::cout<<"-";
+    std::cout<<"+";
+    for(int j=0; j<8; j++)
+        std::cout<<"-";
+    std::cout<<"+";
+    for(int j=0; j<20; j++)
+        std::cout<<"-";
+    std::cout<<"+";
+    std::cout<<"\n";
+    for(int i = 0; i<numar_filme; i++)
+    {
+        std::string afisarea_ofertei;
+        afisarea_ofertei = show_movie(this->bag[i]);
+        std::cout << afisarea_ofertei;
+        std::cout<<"+";
+        for(int j=0; j<8; j++)
+            std::cout<<"-";
+        std::cout<<"+";
+        for(int j=0; j<22; j++)
+            std::cout<<"-";
+        std::cout<<"+";
+        for(int j=0; j<22; j++)
+            std::cout<<"-";
+        std::cout<<"+";
+        for(int j=0; j<8; j++)
+            std::cout<<"-";
+        std::cout<<"+";
+        for(int j=0; j<20; j++)
+            std::cout<<"-";
+        std::cout<<"+";
+        std::cout<<"\n";
+    }
 }

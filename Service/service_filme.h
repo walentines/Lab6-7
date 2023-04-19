@@ -18,22 +18,22 @@ public:
     void show_movies();
     ~FilmeS() = default;
 
-    Vector<Film> search_movie(int id, const std::string &new_title, const std::string &new_type, const std::string &new_year,
+    vector<Film> search_movie(int id, const std::string &new_title, const std::string &new_type, const std::string &new_year,
                       const std::string &new_actor);
 
-    Vector<Film> filter_movies_by_title_service(const std::string &title);
+    vector<Film> filter_movies_by_title_service(const std::string &title);
 
-    Vector<Film> filter_movies_by_year_service(const std::string &year);
+    vector<Film> filter_movies_by_year_service(const std::string &year);
 
     void generate_movies_service();
 
-    Vector<Film> sort_movies_by_title(const std::string &type);
+    vector<Film> sort_movies_by_title(const std::string &type);
 
-    Vector<Film> sort_movies_by_actor(const std::string &type);
+    vector<Film> sort_movies_by_actor(const std::string &type);
 
-    Vector<Film> sort_movies_by_year(const std::string &type);
+    vector<Film> sort_movies_by_year(const std::string &type);
 
-    Vector<Film> sort_movies_by_type(const std::string &type);
+    vector<Film> sort_movies_by_type(const std::string &type);
 
     Film get_movie_by_id(int id);
 
@@ -42,6 +42,18 @@ public:
     int get_length();
 
     void show_movies_table();
+
+    void empty_bag_service();
+
+    void add_movie_bag_service(const std::string &title);
+
+    void show_bag_table_service();
+
+    void fill_the_bag(int number_of_movies);
+
+    void export_mvs(const std::string &file);
+
+    int get_bag_size();
 };
 
 
