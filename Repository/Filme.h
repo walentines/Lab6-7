@@ -27,7 +27,7 @@ public:
 
     [[nodiscard]] int modify_movie(int id, const std::string& new_title, const std::string& new_type, const std::string& new_year, const std::string& new_actor);
 
-    [[nodiscard]] Film get_movie_by_id(int id) const;
+    [[nodiscard]] Film get_movie_by_id(int id);
 
     void show_movies();
 

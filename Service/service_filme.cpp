@@ -4,11 +4,16 @@
 
 #include "service_filme.h"
 #include "../Utils/utils.h"
+#include "../Undo/UndoAdauga.h"
+#include "../Exceptions/ExceptionClass.h"
+#include "../Undo/UndoSterge.h"
+#include "../Undo/UndoModifica.h"
 
 /// Functie pentru adaugarea unui film in lista de filme
 /// \param mv (Film)
 /// \return int
 int FilmeS::add_movie(const Film& mv) {
+    undoActions.push_back(new UndoAdauga{this->serviceFilme, mv.get_id()});
     return this->serviceFilme.add_movie(mv);
 }
 
@@ -36,6 +41,7 @@ int FilmeS::get_length() {
 /// \param id (int)
 /// \return int
 int FilmeS::delete_movie(int id){
+    undoActions.push_back(new UndoSterge{this->get_movie_by_id(id), this->serviceFilme});
     return this->serviceFilme.delete_movie(id);
 }
 
@@ -47,6 +53,14 @@ int FilmeS::delete_movie(int id){
 /// \param new_actor (string)
 /// \return int
 int FilmeS::modify_movie(int id, const std::string& new_title, const std::string& new_type, const std::string& new_year, const std::string& new_actor) {
+    Film cp_film;
+    cp_film.set_title(this->get_movie_by_id(id).get_title());
+    cp_film.set_type(this->get_movie_by_id(id).get_type());
+    cp_film.set_year(this->get_movie_by_id(id).get_year());
+    cp_film.set_actor(this->get_movie_by_id(id).get_actor());
+    cp_film.set_id(id);
+
+    undoActions.push_back(new UndoModifica{cp_film, this->serviceFilme});
     return this->serviceFilme.modify_movie(id, new_title, new_type, new_year, new_actor);
 }
 
@@ -140,4 +154,19 @@ void FilmeS::export_mvs(const std::string &file){
 
 int FilmeS::get_bag_size(){
     return this->serviceFilme.get_bag_length();
+}
+
+int FilmeS::undo(){
+    try{
+        if(undoActions.empty()){
+            throw EmptyUndo();
+        }
+    }
+    catch(EmptyUndo& eu){
+        return -1;
+    }
+    ActiuneUndo* act = undoActions.back();
+    act->doUndo();
+    undoActions.pop_back();
+    delete act;
 }

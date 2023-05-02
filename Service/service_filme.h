@@ -6,10 +6,13 @@
 #define LAB6_7_SERVICE_FILME_H
 
 #include "../Repository/Filme.h"
+#include "../Undo/ActiuneUndo.h"
+#include "../Undo/UndoAdauga.h"
 
 class FilmeS {
 private:
     Filme serviceFilme;
+    vector<ActiuneUndo*> undoActions;
 public:
     FilmeS()= default;
     int add_movie(const Film& mv);
@@ -54,6 +57,8 @@ public:
     void export_mvs(const std::string &file);
 
     int get_bag_size();
+
+    int undo();
 };
 
 

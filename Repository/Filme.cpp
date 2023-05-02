@@ -44,16 +44,16 @@ int Filme::add_movie(const Film& elem){
 /// \param id (int)
 /// \return 1/0 daca s-a efectuat cu succes
 int Filme::delete_movie(int id){
-//    Film elem = get_movie_by_id(id);
-    auto it = std::remove_if(this->filme.begin(), this->filme.end(), [id](const Film& f)->bool {
-        if (f.get_id() == id) {
-            return true;
+    int pos = -1;
+    for(int i = 0; i < this->filme.size(); ++i){
+        if(filme[i].get_id() == id){
+            pos = i;
         }
-        return false;
-    });
-    if(it == this->filme.end()){
-        return -1;
     }
+    if(pos == -1){
+        return pos;
+    }
+    this->filme.erase(this->filme.begin()+pos);
     this->length--;
     return 1;
 }
@@ -61,11 +61,20 @@ int Filme::delete_movie(int id){
 /// Returneaza un film dupa id-ul acestuia
 /// \param id (int)
 /// \return Film
-Film Filme::get_movie_by_id(int id) const{
-    for(int i = 0; i < this->length; ++i){
-        if(filme[i].get_id() == id){
-            return filme[i];
+Film Filme::get_movie_by_id(int id) {
+//    for(int i = 0; i < this->length; ++i){
+//        if(filme[i].get_id() == id){
+//            return filme[i];
+//        }
+//    }
+    auto it = std::find_if(this->filme.begin(), this->filme.end(), [id](Film& f)->bool {
+        if(f.get_id() == id){
+            return true;
         }
+        return false;
+    });
+    if(it != this->filme.end()){
+        return *it;
     }
     std::string ex_title, ex_type, ex_year, ex_actor;
     Film f;

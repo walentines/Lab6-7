@@ -47,6 +47,8 @@ public:
     void generate_bag_of_movies();
 
     void export_movies();
+
+    void undo_ui();
 };
 
 

@@ -133,6 +133,30 @@ build CMakeFiles/Lab6_7.dir/Exceptions/ExceptionClass.cpp.o: CXX_COMPILER__Lab6_
   OBJECT_DIR = CMakeFiles/Lab6_7.dir
   OBJECT_FILE_DIR = CMakeFiles/Lab6_7.dir/Exceptions
 
+build CMakeFiles/Lab6_7.dir/Undo/ActiuneUndo.cpp.o: CXX_COMPILER__Lab6_7_Debug /Users/valentinserban/OOP/Lab6-7/Undo/ActiuneUndo.cpp || cmake_object_order_depends_target_Lab6_7
+  DEP_FILE = CMakeFiles/Lab6_7.dir/Undo/ActiuneUndo.cpp.o.d
+  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk -fcolor-diagnostics -std=gnu++17
+  OBJECT_DIR = CMakeFiles/Lab6_7.dir
+  OBJECT_FILE_DIR = CMakeFiles/Lab6_7.dir/Undo
+
+build CMakeFiles/Lab6_7.dir/Undo/UndoAdauga.cpp.o: CXX_COMPILER__Lab6_7_Debug /Users/valentinserban/OOP/Lab6-7/Undo/UndoAdauga.cpp || cmake_object_order_depends_target_Lab6_7
+  DEP_FILE = CMakeFiles/Lab6_7.dir/Undo/UndoAdauga.cpp.o.d
+  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk -fcolor-diagnostics -std=gnu++17
+  OBJECT_DIR = CMakeFiles/Lab6_7.dir
+  OBJECT_FILE_DIR = CMakeFiles/Lab6_7.dir/Undo
+
+build CMakeFiles/Lab6_7.dir/Undo/UndoSterge.cpp.o: CXX_COMPILER__Lab6_7_Debug /Users/valentinserban/OOP/Lab6-7/Undo/UndoSterge.cpp || cmake_object_order_depends_target_Lab6_7
+  DEP_FILE = CMakeFiles/Lab6_7.dir/Undo/UndoSterge.cpp.o.d
+  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk -fcolor-diagnostics -std=gnu++17
+  OBJECT_DIR = CMakeFiles/Lab6_7.dir
+  OBJECT_FILE_DIR = CMakeFiles/Lab6_7.dir/Undo
+
+build CMakeFiles/Lab6_7.dir/Undo/UndoModifica.cpp.o: CXX_COMPILER__Lab6_7_Debug /Users/valentinserban/OOP/Lab6-7/Undo/UndoModifica.cpp || cmake_object_order_depends_target_Lab6_7
+  DEP_FILE = CMakeFiles/Lab6_7.dir/Undo/UndoModifica.cpp.o.d
+  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk -fcolor-diagnostics -std=gnu++17
+  OBJECT_DIR = CMakeFiles/Lab6_7.dir
+  OBJECT_FILE_DIR = CMakeFiles/Lab6_7.dir/Undo
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target Lab6_7
@@ -141,7 +165,7 @@ build CMakeFiles/Lab6_7.dir/Exceptions/ExceptionClass.cpp.o: CXX_COMPILER__Lab6_
 #############################################
 # Link the executable Lab6_7
 
-build Lab6_7: CXX_EXECUTABLE_LINKER__Lab6_7_Debug CMakeFiles/Lab6_7.dir/main.cpp.o CMakeFiles/Lab6_7.dir/Vector/VectorClass.cpp.o CMakeFiles/Lab6_7.dir/Vector/Iterator.cpp.o CMakeFiles/Lab6_7.dir/Domain/Film.cpp.o CMakeFiles/Lab6_7.dir/Repository/Filme.cpp.o CMakeFiles/Lab6_7.dir/Service/service_filme.cpp.o CMakeFiles/Lab6_7.dir/UI/ui_filme.cpp.o CMakeFiles/Lab6_7.dir/Utils/utils.cpp.o CMakeFiles/Lab6_7.dir/Validator/validators.cpp.o CMakeFiles/Lab6_7.dir/Tests/Tests_Domain.cpp.o CMakeFiles/Lab6_7.dir/Tests/Tests_Repository.cpp.o CMakeFiles/Lab6_7.dir/Tests/test_all_service.cpp.o CMakeFiles/Lab6_7.dir/Tests/Tests_Validators.cpp.o CMakeFiles/Lab6_7.dir/Exceptions/ExceptionClass.cpp.o
+build Lab6_7: CXX_EXECUTABLE_LINKER__Lab6_7_Debug CMakeFiles/Lab6_7.dir/main.cpp.o CMakeFiles/Lab6_7.dir/Vector/VectorClass.cpp.o CMakeFiles/Lab6_7.dir/Vector/Iterator.cpp.o CMakeFiles/Lab6_7.dir/Domain/Film.cpp.o CMakeFiles/Lab6_7.dir/Repository/Filme.cpp.o CMakeFiles/Lab6_7.dir/Service/service_filme.cpp.o CMakeFiles/Lab6_7.dir/UI/ui_filme.cpp.o CMakeFiles/Lab6_7.dir/Utils/utils.cpp.o CMakeFiles/Lab6_7.dir/Validator/validators.cpp.o CMakeFiles/Lab6_7.dir/Tests/Tests_Domain.cpp.o CMakeFiles/Lab6_7.dir/Tests/Tests_Repository.cpp.o CMakeFiles/Lab6_7.dir/Tests/test_all_service.cpp.o CMakeFiles/Lab6_7.dir/Tests/Tests_Validators.cpp.o CMakeFiles/Lab6_7.dir/Exceptions/ExceptionClass.cpp.o CMakeFiles/Lab6_7.dir/Undo/ActiuneUndo.cpp.o CMakeFiles/Lab6_7.dir/Undo/UndoAdauga.cpp.o CMakeFiles/Lab6_7.dir/Undo/UndoSterge.cpp.o CMakeFiles/Lab6_7.dir/Undo/UndoModifica.cpp.o
   FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk
   OBJECT_DIR = CMakeFiles/Lab6_7.dir
   POST_BUILD = :

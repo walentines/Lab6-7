@@ -6,6 +6,7 @@
 #define LAB6_7_FILM_H
 
 #include <string>
+#include <utility>
 
 class Film{
 private:
@@ -16,6 +17,14 @@ private:
     int id{};
 public:
       Film() = default;
+
+      explicit Film(int id, std::string title, std::string type, std::string year, std::string actor){
+          this->title = std::move(title);
+          this->type = std::move(type);
+          this->year = std::move(year);
+          this->actor = std::move(actor);
+          this->id = id;
+      }
 
     [[nodiscard]] std::string get_title() const;
 
