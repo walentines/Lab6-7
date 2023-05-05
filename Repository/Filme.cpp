@@ -312,6 +312,10 @@ Film Filme::get_movie_by_pos(int position) const{
     return filme[position];
 }
 
+Film Filme::get_movie_by_pos_bag(int position) const{
+    return bag[position];
+}
+
 void Filme::empty_bag(){
     this->bag.clear();
 }

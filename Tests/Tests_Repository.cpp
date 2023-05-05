@@ -128,14 +128,14 @@ void test_search_movies(){
 
 void test_add_bag(){
     Filme mvs;
-    generate_movies(mvs);
+    generate_movies(&mvs);
     mvs.add_movie_bag("Uncharted");
     assert(mvs.get_bag_length() == 1);
 }
 
 void test_clear_bag(){
     Filme mvs;
-    generate_movies(mvs);
+    generate_movies(&mvs);
     mvs.add_movie_bag("Uncharted");
     mvs.empty_bag();
     assert(mvs.get_bag_length() == 0);

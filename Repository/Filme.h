@@ -15,9 +15,10 @@ class Filme{
 private:
     vector<Film> filme;
     vector<Film> bag;
-    int length;
+    int length{};
 public:
-    explicit Filme();
+//    Filme() = default;
+    Filme();
 
     [[nodiscard]] int get_length() const;
 
@@ -47,6 +48,8 @@ public:
     void show_bag_table();
 
     int get_bag_length();
+
+    Film get_movie_by_pos_bag(int position) const;
 };
 
 #endif //LAB6_7_FILME_H

@@ -9,10 +9,12 @@
 
 class ui_filme {
 private:
-    FilmeS uiFilme;
+    FilmeS *uiFilme;
 public:
 
-    ui_filme() = default;
+    ui_filme(FilmeS * service){
+        this->uiFilme = service;
+    }
 
     void add_movie();
 

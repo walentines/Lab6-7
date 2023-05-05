@@ -1,3 +1,5 @@
 /Users/valentinserban/OOP/Lab6-7/cmake-build-debug-coverage/CMakeFiles/Lab6_7.dir
 /Users/valentinserban/OOP/Lab6-7/cmake-build-debug-coverage/CMakeFiles/edit_cache.dir
 /Users/valentinserban/OOP/Lab6-7/cmake-build-debug-coverage/CMakeFiles/rebuild_cache.dir
+/Users/valentinserban/OOP/Lab6-7/cmake-build-debug-coverage/CMakeFiles/Lab6_7_autogen_timestamp_deps.dir
+/Users/valentinserban/OOP/Lab6-7/cmake-build-debug-coverage/CMakeFiles/Lab6_7_autogen.dir

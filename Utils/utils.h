@@ -12,7 +12,7 @@
 bool remove_condition(const Film& f, int id);
 vector<Film> filter_movies_by_title(const Filme& movies, const std::string& title) ;
 vector<Film> filter_movies_by_year(const Filme& movies, const std::string& year);
-void generate_movies(Filme &movies);
+void generate_movies(Filme *movies);
 vector<Film> sort_movies_title(const Filme& movies, const std::string& type);
 int compare_title_asc(const Film &a, const Film &b);
 int compare_title_desc(const Film &a, const Film &b);

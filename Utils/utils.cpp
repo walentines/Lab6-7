@@ -337,77 +337,77 @@ std::string show_movie(const Film& movie){
 
 /// Functie pentru generarea filmelor
 /// \param movies Filme
-void generate_movies(Filme &movies){
+void generate_movies(Filme *movies){
     Film f;
     f.set_id(1);
     f.set_type("Action");
     f.set_year("2000");
     f.set_actor("Silvester Stallone");
     f.set_title("Terminator");
-    movies.add_movie(f);
+    movies->add_movie(f);
 
     f.set_id(2);
     f.set_type("Comedy");
     f.set_year("1997");
     f.set_actor("Jenniffer Aniston");
     f.set_title("Friends");
-    movies.add_movie(f);
+    movies->add_movie(f);
 
     f.set_id(3);
     f.set_type("Adventure");
     f.set_year("2002");
     f.set_actor("Tobey Maguire");
     f.set_title("Spider-Man 2");
-    movies.add_movie(f);
+    movies->add_movie(f);
 
     f.set_id(4);
     f.set_type("Adventure");
     f.set_year("2019");
     f.set_actor("Tom Holland");
     f.set_title("Uncharted");
-    movies.add_movie(f);
+    movies->add_movie(f);
 
     f.set_id(5);
     f.set_type("Comedy");
     f.set_year("2013");
     f.set_actor("Sheldon");
     f.set_title("The Big Bang Theory");
-    movies.add_movie(f);
+    movies->add_movie(f);
 
     f.set_id(6);
     f.set_type("Comedy");
     f.set_year("2015");
     f.set_actor("Morty");
     f.set_title("Rick and Morty");
-    movies.add_movie(f);
+    movies->add_movie(f);
 
     f.set_id(7);
     f.set_type("Adventure");
     f.set_year("1999");
     f.set_actor("Frodo Baggins");
     f.set_title("The Lord of the Rings");
-    movies.add_movie(f);
+    movies->add_movie(f);
 
     f.set_id(8);
     f.set_type("Action");
     f.set_year("2016");
     f.set_actor("Jessica Jones");
     f.set_title("Hunger Games");
-    movies.add_movie(f);
+    movies->add_movie(f);
 
     f.set_id(9);
     f.set_type("Horror");
     f.set_year("2022");
     f.set_actor("Margaret Mead");
     f.set_title("The Conjuring");
-    movies.add_movie(f);
+    movies->add_movie(f);
 
     f.set_id(10);
     f.set_type("Comedy");
     f.set_year("2000");
     f.set_actor("LeBron James");
     f.set_title("Scary Movie");
-    movies.add_movie(f);
+    movies->add_movie(f);
 }
 
 void get_random_elements(Filme& movies, int number_of_elem){
@@ -432,7 +432,7 @@ void export_movies(Filme &movies, const std::string& file){
     std::fstream fout;
     fout.open(file, std::ios::out);
     for(int i = 0; i < movies.get_bag_length(); ++i){
-        Film mov = movies.get_movie_by_pos(i);
+        Film mov = movies.get_movie_by_pos_bag(i);
         write_to_csv(mov, fout);
     }
 }

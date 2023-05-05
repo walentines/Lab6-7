@@ -5,7 +5,7 @@
 #include "ui_filme.h"
 #include <iostream>
 #include <utility>
-#include "../vector/VectorClass.cpp"
+#include "../Vector/VectorClass.cpp"
 #include "../Validator/validators.h"
 #include "../Utils/utils.h"
 #include "../Exceptions/ExceptionClass.h"
@@ -125,7 +125,7 @@ void ui_filme::add_movie(){
     }
     int id = stoi(id_string);
     Film f = build_film(id, title, type, year, actor);
-    int ok = this->uiFilme.add_movie(f);
+    int ok = this->uiFilme->add_movie(f);
     if(!ok){
         std::cout << "This ID already exists!\n";
     }
@@ -149,12 +149,12 @@ void ui_filme::delete_movie() {
         std::getline(std::cin, id_string);
     }
     int id = stoi(id_string);
-    vector<Film> f = this->uiFilme.search_movie(id, "", "", "", "");
+    vector<Film> f = this->uiFilme->search_movie(id, "", "", "", "");
     if(f[0].get_id() == 0){
         std::cout << "There's no such ID!\n";
     }
     else{
-        this->uiFilme.delete_movie(id);
+        this->uiFilme->delete_movie(id);
     }
 }
 
@@ -197,7 +197,7 @@ void ui_filme::modify_movie() {
     std::cout << "Enter the actor in which you want to change or nothing: ";
     std::getline(std::cin, actor);
     int id = stoi(id_string);
-    int ok = this->uiFilme.modify_movie(id, title, type, year, actor);
+    int ok = this->uiFilme->modify_movie(id, title, type, year, actor);
     if(ok == -1){
         std::cout << "There's no such ID!\n";
     }
@@ -228,7 +228,7 @@ void ui_filme::search_movie(){
     std::cout << "Enter the actor of the movie you want to find: ";
     std::getline(std::cin, actor);
 
-    vector<Film> searched_movies = this->uiFilme.search_movie(id, title, type, year, actor);
+    vector<Film> searched_movies = this->uiFilme->search_movie(id, title, type, year, actor);
     if(searched_movies.empty()){
         std::cout << "There's no such movie!\n";
     }
@@ -257,7 +257,7 @@ void ui_filme::filter_movies(){
             std::cout << "Enter the title by which you want to filter: ";
             std::getline(std::cin, title);
         }
-        vector<Film> filtered_movies = this->uiFilme.filter_movies_by_title_service(title);
+        vector<Film> filtered_movies = this->uiFilme->filter_movies_by_title_service(title);
         show_movies_table(filtered_movies);
     }
     else if(filter_type == "year"){
@@ -276,7 +276,7 @@ void ui_filme::filter_movies(){
             std::cout << "Enter the year by which you want to filter: ";
             std::getline(std::cin, year);
         }
-        vector<Film> filtered_movies = this->uiFilme.filter_movies_by_year_service(year);
+        vector<Film> filtered_movies = this->uiFilme->filter_movies_by_year_service(year);
         show_movies_table(filtered_movies);
 
     }
@@ -289,7 +289,7 @@ void ui_filme::filter_movies(){
 /// Functie pentru afisarea listei de filme sub forma de tabel
 void ui_filme::show_movies() {
 //    uiFilme.show_movies();
-    uiFilme.show_movies_table();
+    uiFilme->show_movies_table();
 }
 
 /// Functie pentru afisarea listei de filme sub forma de tabel
@@ -393,7 +393,7 @@ void ui_filme::show_movies_table(const vector<Film> & movies)
 
 /// Functie pentru generarea unor filme
 void ui_filme::generate_movies_ui(){
-    this->uiFilme.generate_movies_service();
+    this->uiFilme->generate_movies_service();
 }
 
 /// Functie pentru sortarea unor filme
@@ -409,19 +409,19 @@ void ui_filme::sort_movies(){
         return;
     }
     if(sort_type == "title"){
-        vector<Film> sorted_movies = this->uiFilme.sort_movies_by_title(type);
+        vector<Film> sorted_movies = this->uiFilme->sort_movies_by_title(type);
         show_movies_table(sorted_movies);
     }
     else if(sort_type == "actor"){
-        vector<Film> sorted_movies = this->uiFilme.sort_movies_by_actor(type);
+        vector<Film> sorted_movies = this->uiFilme->sort_movies_by_actor(type);
         show_movies_table(sorted_movies);
     }
     else if(sort_type == "year"){
-        vector<Film> sorted_movies = this->uiFilme.sort_movies_by_year(type);
+        vector<Film> sorted_movies = this->uiFilme->sort_movies_by_year(type);
         show_movies_table(sorted_movies);
     }
     else if(sort_type == "type"){
-        vector<Film> sorted_movies = this->uiFilme.sort_movies_by_type(type);
+        vector<Film> sorted_movies = this->uiFilme->sort_movies_by_type(type);
         show_movies_table(sorted_movies);
     }
     else{
@@ -430,8 +430,8 @@ void ui_filme::sort_movies(){
 }
 
 void ui_filme::empty_bag_ui(){
-    this->uiFilme.empty_bag_service();
-    std::cout << "Number of movies in the bag: " << this->uiFilme.get_bag_size() << "\n";
+    this->uiFilme->empty_bag_service();
+    std::cout << "Number of movies in the bag: " << this->uiFilme->get_bag_size() << "\n";
 }
 
 void ui_filme::add_movie_bag_ui(){
@@ -450,13 +450,13 @@ void ui_filme::add_movie_bag_ui(){
         std::cout << "Enter the title of the movie you want to add to the bag: ";
         std::getline(std::cin, chosen_title);
     }
-    this->uiFilme.add_movie_bag_service(chosen_title);
-    std::cout << "Number of movies in the bag: " << this->uiFilme.get_bag_size() << "\n";
+    this->uiFilme->add_movie_bag_service(chosen_title);
+    std::cout << "Number of movies in the bag: " << this->uiFilme->get_bag_size() << "\n";
 }
 
 void ui_filme::show_bag_table_ui(){
-    this->uiFilme.show_bag_table_service();
-    std::cout << "Number of movies in the bag: " << this->uiFilme.get_bag_size() << "\n";
+    this->uiFilme->show_bag_table_service();
+    std::cout << "Number of movies in the bag: " << this->uiFilme->get_bag_size() << "\n";
 }
 
 void ui_filme::generate_bag_of_movies(){
@@ -474,8 +474,8 @@ void ui_filme::generate_bag_of_movies(){
     }
     if(!errors){
         int number_of_movies_int = std::stoi(number_of_movies);
-        this->uiFilme.fill_the_bag(number_of_movies_int);
-        std::cout << "Number of movies in the bag: " << this->uiFilme.get_bag_size() << "\n";
+        this->uiFilme->fill_the_bag(number_of_movies_int);
+        std::cout << "Number of movies in the bag: " << this->uiFilme->get_bag_size() << "\n";
     }
 }
 
@@ -490,12 +490,12 @@ void ui_filme::export_movies(){
         std::cout << "Enter the file name: ";
         std::getline(std::cin, export_file);
     }
-    this->uiFilme.export_mvs(export_file);
-    std::cout << "Number of movies in the bag: " << this->uiFilme.get_bag_size() << "\n";
+    this->uiFilme->export_mvs(export_file);
+    std::cout << "Number of movies in the bag: " << this->uiFilme->get_bag_size() << "\n";
 }
 
 void ui_filme::undo_ui(){
-    if (this->uiFilme.undo() == -1){
+    if (this->uiFilme->undo() == -1){
         std::cout << "You can't undo anymore!\n";
         return;
     }

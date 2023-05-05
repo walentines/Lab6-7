@@ -11,10 +11,13 @@
 
 class FilmeS {
 private:
-    Filme serviceFilme;
+    Filme *serviceFilme{};
     vector<ActiuneUndo*> undoActions;
 public:
     FilmeS()= default;
+    explicit FilmeS(Filme* repo){
+    this->serviceFilme = repo;
+}
     int add_movie(const Film& mv);
     int delete_movie(int id);
     int modify_movie(int id, const std::string& new_title, const std::string& new_type, const std::string& new_year, const std::string& new_actor);

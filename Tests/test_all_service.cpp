@@ -9,7 +9,8 @@
 // Teste validatoare si schimbat std::string!!
 
 void test_add_service(){
-    FilmeS mvs;
+    Filme repo;
+    FilmeS mvs(&repo);
     Film mv;
     int ok;
     mv.set_title("Terminator");
@@ -26,7 +27,8 @@ void test_add_service(){
 }
 
 void test_delete_service(){
-    FilmeS mvs;
+    Filme repo;
+    FilmeS mvs(&repo);
     Film mv;
     int ok_delete;
     mv.set_title("Terminator");
@@ -42,7 +44,8 @@ void test_delete_service(){
 }
 
 void test_modify_movie_service(){
-    FilmeS mvs;
+    Filme repo;
+    FilmeS mvs(&repo);
     Film mv;
     int ok;
     mv.set_title("Terminator");
@@ -64,7 +67,8 @@ void test_show_movies_service(){
     std::cout.setstate(std::ios_base::failbit);
     std::cout << "Second message" << std::endl;
 
-    FilmeS mvs;
+    Filme repo;
+    FilmeS mvs(&repo);
     Film mv;
     mv.set_title("Terminator");
     mv.set_year("2000");
@@ -81,7 +85,8 @@ void test_show_movies_service(){
 }
 
 void test_search_movies_service(){
-    FilmeS mvs;
+    Filme repo;
+    FilmeS mvs(&repo);
     Film mv;
     mv.set_title("Terminator");
     mv.set_year("2000");
@@ -107,7 +112,8 @@ void test_search_movies_service(){
 }
 
 void test_filter_movies_by_title(){
-    FilmeS mvs;
+    Filme repo;
+    FilmeS mvs(&repo);
     Film mv;
     mv.set_title("Terminator");
     mv.set_year("2000");
@@ -131,7 +137,8 @@ void test_filter_movies_by_title(){
 }
 
 void test_filter_movies_by_year(){
-    FilmeS mvs;
+    Filme repo;
+    FilmeS mvs(&repo);
     Film mv;
     mv.set_title("Terminator");
     mv.set_year("2000");
@@ -154,13 +161,15 @@ void test_filter_movies_by_year(){
 }
 
 void test_generate_movies(){
-    FilmeS mvs;
+    Filme repo;
+    FilmeS mvs(&repo);
     mvs.generate_movies_service();
     assert(mvs.get_length() == 10);
 }
 
 void test_sort_movies_title(){
-    FilmeS mvs;
+    Filme repo;
+    FilmeS mvs(&repo);
     Film mv;
     mv.set_title("Terminator");
     mv.set_year("2000");
@@ -188,7 +197,8 @@ void test_sort_movies_title(){
 }
 
 void test_sort_movies_actor(){
-    FilmeS mvs;
+    Filme repo;
+    FilmeS mvs(&repo);
     Film mv;
     mv.set_title("Terminator");
     mv.set_year("2000");
@@ -216,7 +226,8 @@ void test_sort_movies_actor(){
 }
 
 void test_sort_movies_year(){
-    FilmeS mvs;
+    Filme repo;
+    FilmeS mvs(&repo);
     Film mv;
     mv.set_title("Terminator");
     mv.set_year("2001");
@@ -244,7 +255,8 @@ void test_sort_movies_year(){
 }
 
 void test_sort_movies_type(){
-    FilmeS mvs;
+    Filme repo;
+    FilmeS mvs(&repo);
     Film mv;
     mv.set_title("Terminator");
     mv.set_year("2000");
@@ -272,7 +284,8 @@ void test_sort_movies_type(){
 }
 
 void test_empty_bag(){
-    FilmeS mvs;
+    Filme repo;
+    FilmeS mvs(&repo);
     mvs.generate_movies_service();
     mvs.add_movie_bag_service("Uncharted");
     mvs.empty_bag_service();
@@ -280,21 +293,24 @@ void test_empty_bag(){
 }
 
 void test_add_movie_bag(){
-    FilmeS mvs;
+    Filme repo;
+    FilmeS mvs(&repo);
     mvs.generate_movies_service();
     mvs.add_movie_bag_service("Uncharted");
     assert(mvs.get_bag_size() == 1);
 }
 
 void test_fill_the_bag(){
-    FilmeS mvs;
+    Filme repo;
+    FilmeS mvs(&repo);
     mvs.generate_movies_service();
     mvs.fill_the_bag(3);
     assert(mvs.get_bag_size() == 3);
 }
 
 void test_export_mvs(){
-    FilmeS mvs;
+    Filme repo;
+    FilmeS mvs(&repo);
     mvs.generate_movies_service();
     mvs.fill_the_bag(3);
     mvs.export_mvs("test_export.csv");

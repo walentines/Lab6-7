@@ -11,7 +11,7 @@ class ActiuneUndo{
 public:
     virtual void doUndo() = 0; // Functie pur virtuala
     // Destructor ActiuneUndo
-    virtual ~ActiuneUndo(){};
+    virtual ~ActiuneUndo()= default;
 };
 
 #endif //LAB6_7_ACTIUNEUNDO_H
