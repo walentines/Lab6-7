@@ -156,6 +156,10 @@ int FilmeS::get_bag_size(){
     return this->serviceFilme->get_bag_length();
 }
 
+vector<Film> FilmeS::get_bag_service(){
+    return this->serviceFilme->get_bag();
+}
+
 int FilmeS::undo(){
     try{
         if(undoActions.empty()){
@@ -171,4 +175,8 @@ int FilmeS::undo(){
     delete act;
 
     return 0;
+}
+
+int FilmeS::get_pos_by_id_s(int id){
+    return this->serviceFilme->get_pos_by_id(id);
 }

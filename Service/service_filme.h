@@ -62,6 +62,10 @@ public:
     int get_bag_size();
 
     int undo();
+
+    int get_pos_by_id_s(int id);
+
+    vector<Film> get_bag_service();
 };
 
 

@@ -50,6 +50,10 @@ public:
     int get_bag_length();
 
     Film get_movie_by_pos_bag(int position) const;
+
+    int get_pos_by_id(int id);
+
+    vector<Film> get_bag();
 };
 
 #endif //LAB6_7_FILME_H

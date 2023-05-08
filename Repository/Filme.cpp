@@ -120,6 +120,10 @@ int Filme::modify_movie(int id, const std::string& new_title, const std::string&
     return 1;
 }
 
+vector<Film> Filme::get_bag(){
+    return this->bag;
+}
+
 /// Functie pentru afisarea filmelor
 void Filme::show_movies(){
     for(int i = 0; i < this->length; ++i){
@@ -433,4 +437,13 @@ void Filme::show_bag_table()
         std::cout<<"+";
         std::cout<<"\n";
     }
+}
+
+int Filme::get_pos_by_id(int id){
+    for(int i = 0; i < this->filme.size(); ++i){
+        if(this->filme[i].get_id() == id){
+            return i;
+        }
+    }
+    return -1;
 }
