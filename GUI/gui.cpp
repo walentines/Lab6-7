@@ -65,6 +65,8 @@ void gui::init_window() {
     fl2_filter->addWidget(buton_filter_title);
     auto buton_filter_year = new QPushButton("Filter Year ");
     fl2_filter->addWidget(buton_filter_year);
+    auto buton_filter_type = new QPushButton("Filter Type ");
+    fl2_filter->addWidget(buton_filter_type);
     auto buton_undo = new QPushButton("Undo");
     fl2_filter->addWidget(buton_undo);
     auto fl2_sort = new QVBoxLayout();
@@ -92,6 +94,7 @@ void gui::init_window() {
     connect(buton_modifica, &QPushButton::released, main, [list_mv_show, id, title, type, year, actor, this]{modify_movie(list_mv_show, id, title, type, year, actor);});
     connect(buton_filter_title, &QPushButton::released, main, [title, this]{filter_movies_by_title(title);});
     connect(buton_filter_year, &QPushButton::released, main, [year, this]{filter_movies_by_year(year);});
+    connect(buton_filter_type, &QPushButton::released, main, [type, this]{filter_movies_by_type(type);});
     connect(buton_sort_title_asc, &QPushButton::released, main, [this]{sort_movies_by_title_asc();});
     connect(buton_sort_title_desc, &QPushButton::released, main, [this]{sort_movies_by_title_desc();});
     connect(generate_mov_buton, &QPushButton::released, main, [list_mv_show, this]{generate_movies(list_mv_show);});
@@ -369,6 +372,13 @@ void gui::filter_movies_by_year(QLineEdit *year){
     vector<Film> filtered_mvs = this->service->filter_movies_by_year_service(year_text.toStdString());
     this->create_new_window(filtered_mvs);
 }
+
+void gui::filter_movies_by_type(QLineEdit *type){
+    QString type_text = type->text();
+    vector<Film> filtered_mvs = this->service->filter_movies_by_type_service(type_text.toStdString());
+    this->create_new_window(filtered_mvs);
+}
+
 
 void gui::sort_movies_by_title_asc(){
     vector<Film> sorted_mvs = this->service->sort_movies_by_title("asc");

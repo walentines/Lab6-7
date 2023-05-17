@@ -138,6 +138,17 @@ vector<Film> filter_movies_by_year(const Filme& movies, const std::string& year)
     return filtered_movies;
 }
 
+vector<Film> filter_movies_by_type(const Filme& movies, const std::string& type){
+    vector<Film> filtered_movies;
+    for(int i = 0; i < movies.get_length(); ++i){
+        if(movies.get_movie_by_pos(i).get_type() == type){
+            filtered_movies.push_back(movies.get_movie_by_pos(i));
+        }
+    }
+
+    return filtered_movies;
+}
+
 /// Functie pentru sortarea filmelor dupa titlu dupa tipul asc sau desc
 /// \param movies Filme
 /// \param type (string)

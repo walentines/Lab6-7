@@ -28,5 +28,6 @@ int compare_type_desc(const Film &a, const Film &b);
 std::string show_movie(const Film& movie);
 void get_random_elements(Filme& movies, int number_of_elem);
 void export_movies(Filme &movies, const std::string& file);
+vector<Film> filter_movies_by_type(const Filme& movies, const std::string& type);
 
 #endif //LAB6_7_UTILS_H

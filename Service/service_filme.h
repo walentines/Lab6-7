@@ -66,6 +66,8 @@ public:
     int get_pos_by_id_s(int id);
 
     vector<Film> get_bag_service();
+
+    vector<Film> filter_movies_by_type_service(const std::string &type);
 };
 
 

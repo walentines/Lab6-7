@@ -67,6 +67,8 @@ public:
     void fill_mv_bag(QListWidget *list_mv_show, QLineEdit *mvs);
 
     void undo_mv(QListWidget *list_mv_show);
+
+    void filter_movies_by_type(QLineEdit *type);
 };
 
 

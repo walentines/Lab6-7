@@ -94,6 +94,10 @@ vector<Film> FilmeS::filter_movies_by_year_service(const std::string& year){
     return filter_movies_by_year(*this->serviceFilme, year);
 }
 
+vector<Film> FilmeS::filter_movies_by_type_service(const std::string& type){
+    return filter_movies_by_type(*this->serviceFilme, type);
+}
+
 /// Functie pentru generarea de filme
 void FilmeS::generate_movies_service(){
     generate_movies(this->serviceFilme);
